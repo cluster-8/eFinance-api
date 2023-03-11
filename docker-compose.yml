@@ -9,26 +9,26 @@ services:
   #     MONGO_INITDB_ROOT_USERNAME: c8
   #     MONGO_INITDB_ROOT_PASSWORD: docker
 
-  # postgres:
-  #   image: mysql
-  #   container_name: c8-pg
-  #   environment:
-  #     - POSTGRES_DB=c8
-  #     - POSTGRES_USER=docker
-  #     - POSTGRES_PASSWORD=docker
-  #   ports:
-  #     - '5432:5432'
-
-  mysql:
-    image: mysql
-    container_name: c8-mysql
-    ports:
-      - 3306:3306
+  postgres:
+    image: postgres
+    container_name: c8-pg
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: c8
-      MYSQL_USER: c8
-      MYSQL_PASSWORD: docker
+      - POSTGRES_DB=c8
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - '5432:5432'
+
+  # mysql:
+  #   image: mysql
+  #   container_name: c8-mysql
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: c8
+  #     MYSQL_USER: c8
+  #     MYSQL_PASSWORD: docker
     
   redis:
     image: redis
