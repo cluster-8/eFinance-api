@@ -12,7 +12,7 @@ create table if not exists gc_grupo (
 -- CRIANDO TABELA DE INSTITUIÇÕES FINANCEIRAS
 create table if not exists if_instituicao (
 	if_id uuid DEFAULT uuid_generate_v4 (),
-	if_grupo_id uuid not null,
+	if_grupo_id uuid null,
 	if_nome varchar(100) not null,
 	if_cnpj varchar(14) not null,
 	if_cnpj_formatado varchar(14),
