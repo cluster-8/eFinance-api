@@ -1,7 +1,6 @@
--- CRIANDO EXTENSÃO PARA UUID
+-- CRIANDO TABELA DE GRUPOS CONSOLIDADOS
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- CRIANDO TABELA DE GRUPOS CONSOLIDADOS
 create table if not exists gc_grupo (
   gc_id uuid DEFAULT uuid_generate_v4 (),
   gc_codigo varchar(4) not null,
@@ -28,9 +27,6 @@ create table if not exists sp_servico (
 	sp_id uuid default uuid_generate_v4 (),
 	sp_codigo varchar(4) not null,
 	sp_tipo char(1) not null,
-	sp_unidade varchar(20),
-	sp_periodicidade varchar(20),
-	sp_moeda varchar(10),
 	primary key (sp_id)
 );
 
@@ -41,6 +37,9 @@ create table if not exists ts_tarifa (
 	ts_instituicao_id uuid not null,
 	ts_valor_maximo numeric(3,2) not null,
 	ts_data_vigencia date not null,
+	sp_unidade varchar(20),
+	sp_periodicidade varchar(20),
+	ts_moeda varchar(10),
 	primary key (ts_id),
 	CONSTRAINT fk_servico
       FOREIGN KEY(ts_servico_id)
