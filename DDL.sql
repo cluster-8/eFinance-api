@@ -35,7 +35,7 @@ create table if not exists ts_tarifa (
 	ts_id uuid default uuid_generate_v4 (),
 	ts_servico_id uuid not null,
 	ts_instituicao_id uuid not null,
-	ts_valor_maximo numeric(3,2) not null,
+	ts_valor_maximo decimal(8,2) not null,
 	ts_data_vigencia date not null,
 	ts_unidade varchar(20),
 	ts_periodicidade varchar(20),
