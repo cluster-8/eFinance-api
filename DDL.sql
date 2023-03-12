@@ -37,8 +37,8 @@ create table if not exists ts_tarifa (
 	ts_instituicao_id uuid not null,
 	ts_valor_maximo numeric(3,2) not null,
 	ts_data_vigencia date not null,
-	sp_unidade varchar(20),
-	sp_periodicidade varchar(20),
+	ts_unidade varchar(20),
+	ts_periodicidade varchar(20),
 	ts_moeda varchar(10),
 	primary key (ts_id),
 	CONSTRAINT fk_servico
