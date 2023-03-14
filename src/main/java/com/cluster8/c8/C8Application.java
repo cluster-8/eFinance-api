@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class C8Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(C8Application.class, args);
-	}
+		SpringApplication app = new SpringApplication(C8Application.class);
 
+		app.run(args);
+	}
 }
