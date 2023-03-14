@@ -11,7 +11,7 @@ create table if not exists instituicoes (
 	"id" uuid primary key DEFAULT uuid_generate_v4 (),
 	"nome" varchar(100) not null,
 	"cnpj" varchar(14) not null,
-	"cnpjFormatado" varchar(14),
+	"cnpj_formatado" varchar(14),
 
 	unique ("nome", "cnpj")
 );
@@ -28,16 +28,16 @@ create table if not exists servicos (
 -- CRIANDO TABELA DE TARIFAS
 create table if not exists tarifas (
 	"id" uuid primary key default uuid_generate_v4 (),
-	"servicoId" uuid not null,
-	"instituicaoId" uuid not null,
-	"valorMaximo" float not null,
-	"dataVigencia" date not null,
+	"servico_id" uuid not null,
+	"instituicao_id" uuid not null,
+	"valor_maximo" float not null,
+	"data_vigencia" date not null,
 	"unidade" varchar(20),
 	"periodicidade" varchar(20),
 	"moeda" varchar(10),
 
-	constraint fk_servico foreign key("servicoId") references servicos(id),
-	constraint fk_instituicao foreign key("instituicaoId") references instituicoes(id),
+	constraint fk_servico foreign key("servico_id") references servicos(id),
+	constraint fk_instituicao foreign key("instituicao_id") references instituicoes(id),
 
-	unique ("servicoId", "instituicaoId", "valorMaximo", "dataVigencia", "periodicidade", "unidade")
+	unique ("servico_id", "instituicao_id", "valor_maximo", "data_vigencia", "periodicidade", "unidade")
 );
