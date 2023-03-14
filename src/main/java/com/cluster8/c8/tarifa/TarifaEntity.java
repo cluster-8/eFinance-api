@@ -26,4 +26,5 @@ public class TarifaEntity {
     String periodicidade;
     Float valorMaximo;
     Date dataVigencia;
+    Date createdAt;
 }
