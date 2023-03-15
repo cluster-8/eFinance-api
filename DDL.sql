@@ -12,7 +12,7 @@ create table if not exists instituicoes (
 	"nome" varchar(100) not null,
 	"cnpj" varchar(14) not null,
 	"cnpj_formatado" varchar(14),
-	"created_at" date not null default current_timestamp,
+	"created_at" timestamp not null default current_timestamp,
 
 	unique ("nome", "cnpj")
 );
@@ -22,7 +22,7 @@ create table if not exists servicos (
 	"id" uuid primary key default uuid_generate_v4 (),
 	"codigo" varchar(4) not null,
 	"tipo" char(1) not null,
-	"created_at" date not null default current_timestamp,
+	"created_at" timestamp not null default current_timestamp,
 
 	unique ("codigo", "tipo")
 );
@@ -37,7 +37,7 @@ create table if not exists tarifas (
 	"unidade" varchar(20),
 	"periodicidade" varchar(20),
 	"moeda" varchar(10),
-	"created_at" date not null default current_timestamp,
+	"created_at" timestamp not null default current_timestamp,
 
 	constraint fk_servico foreign key("servico_id") references servicos(id),
 	constraint fk_instituicao foreign key("instituicao_id") references instituicoes(id),
