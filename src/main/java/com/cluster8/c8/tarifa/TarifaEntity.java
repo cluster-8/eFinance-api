@@ -1,6 +1,7 @@
 package com.cluster8.c8.tarifa;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -26,5 +27,5 @@ public class TarifaEntity {
     String periodicidade;
     Float valorMaximo;
     Date dataVigencia;
-    Date createdAt;
+    Timestamp createdAt;
 }

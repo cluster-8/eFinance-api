@@ -15,7 +15,7 @@ public class TarifaController {
   private TarifaService service;
 
   @GetMapping("/instituicao/tarifas")
-  public List<TarifaEntity> findTarifasByInstituicao(@RequestParam UUID id) {
+  public List<TarifaEntity> tarifasFindAllByInstituicao(@RequestParam UUID id) {
     return this.service.tarifasFindAllByInstituicao(id);
   }
 }
