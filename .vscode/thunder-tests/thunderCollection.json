@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
+    "colName": "tarifas",
+    "created": "2023-03-14T12:41:21.643Z",
+    "sortNum": 10000,
+    "folders": []
+  },
+  {
+    "_id": "8b571319-d06e-431b-88f5-6567b2d4ad95",
+    "colName": "instituicoes",
+    "created": "2023-03-15T11:41:39.603Z",
+    "sortNum": 20000,
+    "folders": []
+  }
+]

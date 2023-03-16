@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "f607f6bb-e1e8-4d0a-a558-1a45248c90f1",
+    "colId": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
+    "containerId": "",
+    "name": "find by instituicao",
+    "url": "{{baseUrl}}/instituicao/tarifas?id=196a74a8-c4e4-4e1d-951c-9ebdfe270e12",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-14T12:41:41.649Z",
+    "modified": "2023-03-14T12:47:02.694Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "123",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "id",
+        "value": "196a74a8-c4e4-4e1d-951c-9ebdfe270e12",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "f67b4493-1ad3-4fb3-9d84-20af58602e6b",
+    "colId": "8b571319-d06e-431b-88f5-6567b2d4ad95",
+    "containerId": "",
+    "name": "find by id",
+    "url": "{{baseUrl}}/instituicoes?id=570e05ce-bf2b-40e8-9431-69141de41eab",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-15T11:41:39.606Z",
+    "modified": "2023-03-16T11:08:58.413Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "123",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "id",
+        "value": "196a74a8-c4e4-4e1d-951c-9ebdfe270e12",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "id",
+        "value": "570e05ce-bf2b-40e8-9431-69141de41eab",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  }
+]

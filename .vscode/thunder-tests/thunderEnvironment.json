@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "9e4bfce0-f3e2-4399-9a42-5ba3d23e9b72",
+    "name": "local",
+    "default": false,
+    "sortNum": 10000,
+    "created": "2023-03-14T12:31:35.672Z",
+    "modified": "2023-03-14T12:31:35.672Z",
+    "data": [
+      {
+        "name": "baseUrl",
+        "value": "localhost:3000"
+      },
+      {
+        "name": "token",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "_id": "ba055f22-08fd-408d-b330-56e80ff63479",
+    "name": "prod",
+    "default": true,
+    "sortNum": 20000,
+    "created": "2023-03-14T12:38:59.787Z",
+    "modified": "2023-03-14T12:38:59.787Z",
+    "data": [
+      {
+        "name": "baseUrl",
+        "value": "https://api-ealgumacoisa.herokuapp.com"
+      },
+      {
+        "name": "token",
+        "value": ""
+      }
+    ]
+  }
+]
