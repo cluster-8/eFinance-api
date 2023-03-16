@@ -8,18 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.cluster8.c8.exceptions.NotFoundException;
+
 @Service
 public class TarifaService {
 
     @Autowired
     private TarifaRepository repo;
 
-    public List<TarifaEntity> tarifasFindAllByInstituicao(UUID id) {
+    public List<TarifaEntity> tarifasFindAllByInstituicao(UUID id) throws Exception {
         List<TarifaEntity> tarifas = repo.findByInstituicaoId(id);
 
         if (tarifas.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "Tarifas não encontradas para instituição informada");
+            throw new NotFoundException("Tarifas não encontradas para instituição informada");
         }
 
         return tarifas;
