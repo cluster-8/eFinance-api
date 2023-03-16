@@ -17,12 +17,14 @@ create table if not exists instituicoes (
 	unique ("nome", "cnpj")
 );
 
+CREATE TYPE servicosTipo AS ENUM ('F', 'J');
+
 -- CRIANDO TABELA DE SERVIÇOS
 create table if not exists servicos (
 	"id" uuid primary key default uuid_generate_v4 (),
 	"nome" varchar(100) not null,
 	"codigo" varchar(4) not null,
-	"tipo" char(1) not null,
+	"tipo" servicosTipo not null,
 	"created_at" timestamp not null default current_timestamp,
 
 	unique ("codigo", "tipo")
