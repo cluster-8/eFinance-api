@@ -1,5 +1,6 @@
 package com.cluster8.c8.instituicao;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,5 +23,9 @@ public class InstituicaoService {
         }
 
         return instituicao;
+    }
+
+    public List<InstituicaoEntity> instituicaoFindAll() {
+        return repo.findAll();
     }
 }
