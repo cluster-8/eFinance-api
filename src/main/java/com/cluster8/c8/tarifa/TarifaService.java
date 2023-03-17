@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.cluster8.c8.exceptions.NotFoundException;
 
@@ -16,6 +15,7 @@ public class TarifaService {
     @Autowired
     private TarifaRepository repo;
 
+    @Cacheable(cacheNames = "TarifaService", key = "#id")
     public List<TarifaEntity> tarifasFindAllByInstituicao(UUID id) throws Exception {
         List<TarifaEntity> tarifas = repo.findByInstituicaoId(id);
 

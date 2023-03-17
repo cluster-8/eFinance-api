@@ -1,5 +1,6 @@
 package com.cluster8.c8.tarifa;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -14,7 +15,7 @@ import lombok.Data;
 @Entity
 @Table(name = "tarifas")
 @Data
-public class TarifaEntity {
+public class TarifaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.cluster8.c8.instituicao;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import lombok.Data;
 @Entity
 @Table(name = "instituicoes")
 @Data
-public class InstituicaoEntity {
+public class InstituicaoEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
