@@ -9,6 +9,9 @@ import org.springframework.cache.annotation.EnableCaching;
 public class C8Application {
 
 	public static void main(String[] args) {
+
+		System.getenv().forEach((k, v) -> System.out.println(k + " : " + v));
+
 		SpringApplication app = new SpringApplication(C8Application.class);
 
 		app.run(args);
