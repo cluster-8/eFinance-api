@@ -49,12 +49,12 @@ create table if not exists tarifas (
 );
 
 
-CREATE TYPE apiTipo AS ENUM ('pix_saque', 'taxas_cartoes', 'canais_atendimento', 'pilar3');
+CREATE TYPE api_tipo AS ENUM ('pix_saque', 'taxas_cartoes', 'canais_atendimento', 'pilar3');
 
 -- CRIANDO TABELA DE APIS
 create table if not exists apis (
 	"id" uuid primary key default uuid_generate_v4 (),
-	"apiTipo" apiTipo not null,
+	"api_tipo" apiTipo not null,
 	"versao" varchar(10) not null,
 	"recurso" varchar(100) not null,
 	"argumento" varchar(100),
