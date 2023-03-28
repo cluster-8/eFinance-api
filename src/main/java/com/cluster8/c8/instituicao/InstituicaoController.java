@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.cluster8.c8.exceptions.NotFoundException;
+import com.cluster8.c8.instituicao.dto.FindAllInstituicoesDto;
 
 @RestController
 public class InstituicaoController {
@@ -20,7 +21,7 @@ public class InstituicaoController {
   private InstituicaoService service;
 
   @GetMapping("/instituicoes")
-  public List<InstituicaoEntity> instituicaoFindAll() {
+  public List<FindAllInstituicoesDto> instituicaoFindAll() {
     try {
       return this.service.instituicaoFindAll();
     } catch (Exception e) {
