@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.cluster8.c8.exceptions.NotFoundException;
+import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
 
 @Service
 public class TarifaService {
@@ -15,9 +16,18 @@ public class TarifaService {
     @Autowired
     private TarifaRepository repo;
 
-    @Cacheable(cacheNames = "TarifaService", key = "#id")
-    public List<TarifaEntity> tarifasFindAllByInstituicao(UUID id) throws Exception {
-        List<TarifaEntity> tarifas = repo.findByInstituicaoId(id);
+    @Cacheable(cacheNames = "TarifaService", key = "{ #id, #tipo }")
+    public List<FindAllTarifasByInstituicaoDto> tarifasFindAllByInstituicaoAndServicoTipo(UUID id,
+            String tipo)
+            throws Exception {
+
+        List<FindAllTarifasByInstituicaoDto> tarifas;
+
+        if (tipo == null) {
+            tarifas = repo.findByInstituicaoId(id);
+        } else {
+            tarifas = repo.findByInstituicaoIdAndServicoTipo(id, tipo);
+        }
 
         if (tarifas.isEmpty()) {
             throw new NotFoundException("Tarifas não encontradas para instituição informada");
