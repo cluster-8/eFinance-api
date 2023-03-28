@@ -1,40 +1,57 @@
 package com.cluster8.c8.config;
 
-import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
 @Configuration
 @EnableCaching
 public class RedisConfig {
 
+  @Value("${SPRING_REDIS_URL}")
+  String redisUrl;
+
   @Bean
-  public LettuceClientConfigurationBuilderCustomizer lettuceClientConfigurationBuilderCustomizer() {
-    return clientConfigurationBuilder -> {
-      if (clientConfigurationBuilder.build().isUseSsl()) {
-        clientConfigurationBuilder.useSsl().disablePeerVerification();
-      }
-    };
+  public JedisConnectionFactory connectionFactory() {
+    RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
+
+    configuration.setHostName(getHostFromUrl(redisUrl));
+    configuration.setPort(getPortFromUrl(redisUrl));
+    configuration.setPassword(getPasswordFromUrl(redisUrl));
+
+    return new JedisConnectionFactory(configuration);
   }
 
-  // @Bean
-  // public RedisCacheConfiguration cacheConfiguration() {
-  // return RedisCacheConfiguration.defaultCacheConfig()
-  // .entryTtl(Duration.ofMinutes(60))
-  // .disableCachingNullValues()
-  // .serializeValuesWith(RedisSerializationContext.SerializationPair
-  // .fromSerializer(new GenericJackson2JsonRedisSerializer()));
-  // }
+  String getHostFromUrl(String url) {
+    url = url.substring(url.indexOf("@") + 1);
 
-  // @Bean
-  // public RedisCacheManagerBuilderCustomizer
-  // redisCacheManagerBuilderCustomizer() {
-  // return (builder) -> builder
-  // .withCacheConfiguration("itemCache",
-  // RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(30)))
-  // .withCacheConfiguration("customerCache",
-  // RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5)));
-  // }
+    String value = url.substring(0, url.indexOf(":"));
 
+    System.out.println("value: " + value);
+
+    return value;
+  }
+
+  int getPortFromUrl(String url) {
+    url = url.substring(url.lastIndexOf(":") + 1);
+
+    int value = Integer.parseInt(url);
+
+    System.out.println("value: " + value);
+
+    return value;
+  }
+
+  String getPasswordFromUrl(String url) {
+    url = url.substring(9);
+
+    String value = url.substring(0, url.indexOf("@"));
+
+    System.out.println("value: " + value);
+
+    return value;
+  }
 }

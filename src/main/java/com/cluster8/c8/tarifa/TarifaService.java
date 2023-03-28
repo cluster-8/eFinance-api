@@ -15,7 +15,7 @@ public class TarifaService {
     @Autowired
     private TarifaRepository repo;
 
-    // @Cacheable(cacheNames = "TarifaService", key = "#id")
+    @Cacheable(cacheNames = "TarifaService", key = "#id")
     public List<TarifaEntity> tarifasFindAllByInstituicao(UUID id) throws Exception {
         List<TarifaEntity> tarifas = repo.findByInstituicaoId(id);
 

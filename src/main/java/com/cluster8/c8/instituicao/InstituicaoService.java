@@ -16,7 +16,7 @@ public class InstituicaoService {
     @Autowired
     private InstituicaoRepository repo;
 
-    // @Cacheable(cacheNames = "InstituicaoService", key = "#id")
+    @Cacheable(cacheNames = "InstituicaoService", key = "#id")
     public Optional<InstituicaoEntity> instituicaoFindById(UUID id) throws Exception {
         Optional<InstituicaoEntity> instituicao = repo.findById(id);
 
@@ -27,7 +27,7 @@ public class InstituicaoService {
         return instituicao;
     }
 
-    // @Cacheable(cacheNames = "InstituicaoService", key = "#root.method.name")
+    @Cacheable(cacheNames = "InstituicaoService", key = "#root.method.name")
     public List<InstituicaoEntity> instituicaoFindAll() {
         return repo.findAll();
     }
