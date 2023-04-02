@@ -1,4 +1,4 @@
-package com.cluster8.c8.instituicao;
+package com.cluster8.c8.servico;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,23 +20,23 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "instituicoes")
+@Table(name = "servicos")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class InstituicaoEntity implements Serializable {
+public class ServicoEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     UUID id;
 
     String nome;
-    String cnpj;
-    String cnpjFormatado;
+    String codigo;
+    String tipo;
     Timestamp createdAt;
 
-    @OneToMany(mappedBy = "instituicao")
+    @OneToMany(mappedBy = "servico")
     @JsonManagedReference
     List<TarifaEntity> tarifas;
 }

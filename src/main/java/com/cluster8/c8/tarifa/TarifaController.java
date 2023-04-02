@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.cluster8.c8.exceptions.NotFoundException;
+import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
 
 @RestController
 public class TarifaController {
@@ -19,9 +21,10 @@ public class TarifaController {
   private TarifaService service;
 
   @GetMapping("/instituicao/tarifas/{id}")
-  public List<TarifaEntity> tarifasFindAllByInstituicao(@PathVariable UUID id) {
+  public List<FindAllTarifasByInstituicaoDto> tarifasFindAllByInstituicao(@PathVariable UUID id,
+      @RequestParam(required = false) String tipo) {
     try {
-      return this.service.tarifasFindAllByInstituicao(id);
+      return this.service.tarifasFindAllByInstituicaoAndServicoTipo(id, tipo);
     } catch (NotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     } catch (Exception e) {

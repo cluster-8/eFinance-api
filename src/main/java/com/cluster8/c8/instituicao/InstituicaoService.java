@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.cluster8.c8.exceptions.NotFoundException;
+import com.cluster8.c8.instituicao.dto.FindAllInstituicoesDto;
 
 @Service
 public class InstituicaoService {
@@ -28,7 +29,7 @@ public class InstituicaoService {
     }
 
     @Cacheable(cacheNames = "InstituicaoService", key = "#root.method.name")
-    public List<InstituicaoEntity> instituicaoFindAll() {
-        return repo.findAll();
+    public List<FindAllInstituicoesDto> instituicaoFindAll() {
+        return repo.findAllInstituicoes();
     }
 }

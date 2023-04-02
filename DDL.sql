@@ -17,14 +17,12 @@ create table if not exists instituicoes (
 	unique ("nome", "cnpj")
 );
 
-CREATE TYPE servicosTipo AS ENUM ('F', 'J');
-
 -- CRIANDO TABELA DE SERVIÇOS
 create table if not exists servicos (
 	"id" uuid primary key default uuid_generate_v4 (),
 	"nome" varchar(100) not null,
 	"codigo" varchar(4) not null,
-	"tipo" servicosTipo not null,
+	"tipo" varchar(4) not null,
 	"created_at" timestamp not null default current_timestamp,
 
 	unique ("codigo", "tipo")
@@ -46,22 +44,4 @@ create table if not exists tarifas (
 	constraint fk_instituicao foreign key("instituicao_id") references instituicoes(id),
 
 	unique ("servico_id", "instituicao_id", "valor_maximo", "data_vigencia", "periodicidade", "unidade")
-);
-
-
-CREATE TYPE api_tipo AS ENUM ('pix_saque', 'taxas_cartoes', 'canais_atendimento', 'pilar3');
-
--- CRIANDO TABELA DE APIS
-create table if not exists apis (
-	"id" uuid primary key default uuid_generate_v4 (),
-	"api_tipo" apiTipo not null,
-	"versao" varchar(10) not null,
-	"recurso" varchar(100) not null,
-	"argumento" varchar(100),
-	"situacao" varchar(20) not null,
-	"url_dados" varchar(250),
-	"created_at" timestamp not null default current_timestamp,
-	"instituicao_id" uuid not null,
-
-	constraint fk_instituicao foreign key("instituicao_id") references instituicoes(id)
 );
