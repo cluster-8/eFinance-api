@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.cluster8.c8.tarifa.TarifaEntity;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +37,7 @@ public class InstituicaoEntity implements Serializable {
     Timestamp createdAt;
 
     @OneToMany(mappedBy = "instituicao")
-    @JsonManagedReference
+    // @JsonManagedReference
+    @JsonIgnore
     List<TarifaEntity> tarifas;
 }
