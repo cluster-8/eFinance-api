@@ -12,6 +12,7 @@ import com.cluster8.c8.instituicao.dto.FindAllInstituicoesDto;
 
 @Repository
 public interface InstituicaoRepository extends JpaRepository<InstituicaoEntity, UUID> {
+  @Query("select new com.cluster8.c8.instituicao.dto.FindByIdInstituicoesDto(i.id, i.nome, i.cnpj, i.cnpjFormatado, i.createdAt) from InstituicaoEntity i where id=:id")
   Optional<InstituicaoEntity> findById(UUID id);
 
   @Query("select new com.cluster8.c8.instituicao.dto.FindAllInstituicoesDto(i.id, i.nome, i.cnpjFormatado) from InstituicaoEntity as i")

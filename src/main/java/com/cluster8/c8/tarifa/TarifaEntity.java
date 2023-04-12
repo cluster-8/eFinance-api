@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import com.cluster8.c8.instituicao.InstituicaoEntity;
 import com.cluster8.c8.servico.ServicoEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,12 +43,11 @@ public class TarifaEntity implements Serializable {
 
     @ManyToOne()
     @JoinColumn(name = "servico_id")
-    @JsonBackReference
+    // @JsonBackReference
     ServicoEntity servico;
 
     @ManyToOne()
     @JoinColumn(name = "instituicao_id")
-    @JsonBackReference
+    // @JsonBackReference
     InstituicaoEntity instituicao;
-
 }
