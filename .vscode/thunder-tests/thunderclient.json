@@ -4,17 +4,22 @@
     "colId": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
     "containerId": "",
     "name": "find by instituicao",
-    "url": "{{baseUrl}}/instituicao/tarifas/196a74a8-c4e4-4e1d-951c-9ebdfe270e12",
+    "url": "{{baseUrl}}/instituicao/tarifas/c73b44b0-f0d2-4ea5-8be2-d26543ee1d8c?tipo=J",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-03-14T12:41:41.649Z",
-    "modified": "2023-03-17T11:20:21.928Z",
+    "modified": "2023-04-03T13:15:13.872Z",
     "headers": [],
     "params": [
       {
-        "name": "id",
-        "value": "123",
+        "name": "tipo",
+        "value": "F",
         "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "tipo",
+        "value": "J",
         "isPath": false
       }
     ],
@@ -25,20 +30,13 @@
     "colId": "8b571319-d06e-431b-88f5-6567b2d4ad95",
     "containerId": "",
     "name": "find by id",
-    "url": "{{baseUrl}}/instituicoes/570e05ce-bf2b-40e8-9431-69141de41eab",
+    "url": "{{baseUrl}}/instituicoes/d1e783c8-d159-4a54-9cc0-75f1aaf66d78",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-03-15T11:41:39.606Z",
-    "modified": "2023-03-16T15:15:30.385Z",
+    "modified": "2023-04-03T11:30:38.478Z",
     "headers": [],
-    "params": [
-      {
-        "name": "id",
-        "value": "123",
-        "isDisabled": true,
-        "isPath": false
-      }
-    ],
+    "params": [],
     "tests": []
   },
   {
@@ -60,6 +58,34 @@
         "isPath": false
       }
     ],
+    "tests": []
+  },
+  {
+    "_id": "88123b19-d064-4b11-9512-d46648f9da87",
+    "colId": "9aff68bd-159c-446c-b55e-5506cf1d4ac5",
+    "containerId": "",
+    "name": "find by id",
+    "url": "{{baseUrl}}/servicos/eea4fef8-a9c4-44d9-960b-5583320adb35",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-04-13T12:56:06.978Z",
+    "modified": "2023-04-13T13:03:54.931Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de200111-d058-4f8e-8728-b93c5f36c9b3",
+    "colId": "9aff68bd-159c-446c-b55e-5506cf1d4ac5",
+    "containerId": "",
+    "name": "find all",
+    "url": "{{baseUrl}}/servicos",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-04-13T12:56:06.980Z",
+    "modified": "2023-04-13T12:56:30.711Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
