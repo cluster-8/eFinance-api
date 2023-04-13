@@ -45,3 +45,36 @@ create table if not exists tarifas (
 
 	unique ("servico_id", "instituicao_id", "valor_maximo", "data_vigencia", "periodicidade", "unidade")
 );
+
+-- CRIANDO TABELA DE SCORE
+create table if not exists scores (
+	"id" uuid primary key default uuid_generate_v4 (),
+	"instituicao_id" uuid not null,
+	"score_pf" float not null,
+	"score_pj" float not null,
+	"score_ttl" float not null,
+	"qtd_servicos" float not null,
+	"created_at" timestamp not null default current_timestamp,
+
+	constraint fk_instituicao foreign key("instituicao_id") references instituicoes(id)
+);
+
+ALTER TABLE tarifas ADD COLUMN valor_minimo float null;
+
+create table if not exists grupos (
+	"id" uuid primary key DEFAULT uuid_generate_v4 (),
+	"nome" varchar(100) not null,
+	"codigo" varchar(4) not null,
+	"created_at" timestamp not null default current_timestamp,
+	
+	unique ("nome", "codigo")
+);
+
+create table if not exists instituicao_grupo (
+	"id" uuid primary key default uuid_generate_v4 (),
+	"instituicao_id" uuid not null,
+	"grupo_id" uuid not null,
+	"created_at" timestamp not null default current_timestamp,
+	
+	unique ("instituicao_id", "grupo_id")
+);
