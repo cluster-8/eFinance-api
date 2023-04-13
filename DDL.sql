@@ -66,7 +66,7 @@ create table if not exists grupos (
 	"nome" varchar(100) not null,
 	"codigo" varchar(4) not null,
 	"created_at" timestamp not null default current_timestamp,
-	
+
 	unique ("nome", "codigo")
 );
 
