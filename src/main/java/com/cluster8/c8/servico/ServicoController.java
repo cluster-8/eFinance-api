@@ -1,0 +1,41 @@
+package com.cluster8.c8.servico;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.cluster8.c8.exceptions.NotFoundException;
+
+@RestController
+public class ServicoController {
+
+  @Autowired
+  private ServicoService service;
+
+  @GetMapping("/servicos")
+  public List<ServicoEntity> findAll() {
+    try {
+      return this.service.findAll();
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+  }
+
+  @GetMapping("/servicos/{id}")
+  public Optional<ServicoEntity> findById(@PathVariable UUID id) {
+    try {
+      return this.service.findById(id);
+    } catch (NotFoundException e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+  }
+}
