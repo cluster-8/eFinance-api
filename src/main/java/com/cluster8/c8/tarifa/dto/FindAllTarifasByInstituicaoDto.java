@@ -14,17 +14,19 @@ public class FindAllTarifasByInstituicaoDto implements Serializable {
   String unidade;
   String periodicidade;
   Float valorMaximo;
+  Float valorMinimo;
   Date dataVigencia;
 
   FindAllTarifasByInstituicaoServicoNomeDto servico;
 
-  public FindAllTarifasByInstituicaoDto(UUID id, String moeda, String unidade, String periodicidade, Float valorMaximo,
+  public FindAllTarifasByInstituicaoDto(UUID id, String moeda, String unidade, String periodicidade, Float valorMaximo, Float valorMinimo,
       Date dataVigencia, UUID servicoId, String servicoNome) {
     this.id = id;
     this.moeda = moeda;
     this.unidade = unidade;
     this.periodicidade = periodicidade;
     this.valorMaximo = valorMaximo;
+    this.valorMinimo = valorMinimo;
     this.dataVigencia = dataVigencia;
     this.servico = new FindAllTarifasByInstituicaoServicoNomeDto(servicoId, servicoNome);
   }

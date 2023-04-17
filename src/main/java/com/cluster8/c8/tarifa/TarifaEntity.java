@@ -38,6 +38,7 @@ public class TarifaEntity implements Serializable {
     String unidade;
     String periodicidade;
     Float valorMaximo;
+    Float valorMinimo;
     Date dataVigencia;
     Timestamp createdAt;
 
