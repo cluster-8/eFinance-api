@@ -4,11 +4,11 @@
     "colId": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
     "containerId": "",
     "name": "find by instituicao",
-    "url": "{{baseUrl}}/instituicao/tarifas/c73b44b0-f0d2-4ea5-8be2-d26543ee1d8c?tipo=J",
+    "url": "{{baseUrl}}/instituicao/tarifas/c73b44b0-f0d2-4ea5-8be2-d26543ee1d8c",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-03-14T12:41:41.649Z",
-    "modified": "2023-04-03T13:15:13.872Z",
+    "modified": "2023-04-13T14:56:07.862Z",
     "headers": [],
     "params": [
       {
@@ -20,6 +20,7 @@
       {
         "name": "tipo",
         "value": "J",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -86,6 +87,49 @@
     "modified": "2023-04-13T12:56:30.711Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0a61c7b6-c10d-41d8-8bd4-8541a365c5ac",
+    "colId": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
+    "containerId": "",
+    "name": "top 5",
+    "url": "{{baseUrl}}/tarifas/top-5/32e599bf-4c21-4ebc-9504-46dd3afc1607?dataFim=2021-08-11&page=4",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-04-17T11:45:41.828Z",
+    "modified": "2023-04-18T11:58:39.115Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "dataFim",
+        "value": "2021-08-11",
+        "isPath": false
+      },
+      {
+        "name": "order",
+        "value": "desc",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "order",
+        "value": "asc",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "limit",
+        "value": "10",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "4",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]
