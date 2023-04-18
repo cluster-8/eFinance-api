@@ -40,4 +40,10 @@ public class InstituicaoEntity implements Serializable {
     // @JsonManagedReference
     @JsonIgnore
     List<TarifaEntity> tarifas;
+
+    public InstituicaoEntity(UUID id, String nome, String cnpj) {
+        this.id = id;
+        this.nome = nome;
+        this.cnpj = cnpj;
+    }
 }
