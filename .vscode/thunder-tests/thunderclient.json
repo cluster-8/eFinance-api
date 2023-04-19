@@ -131,5 +131,41 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "2410fae9-b113-4eda-8418-0ef750750360",
+    "colId": "3fbb8804-d5b3-4590-a1a5-bca649327e94",
+    "containerId": "",
+    "name": "find all",
+    "url": "{{baseUrl}}/scores?page=1&order=desc&orderField=scorePf",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-04-18T12:33:40.964Z",
+    "modified": "2023-04-19T12:05:34.009Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "limit",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "order",
+        "value": "desc",
+        "isPath": false
+      },
+      {
+        "name": "orderField",
+        "value": "scorePf",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]
