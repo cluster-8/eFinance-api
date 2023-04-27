@@ -21,5 +21,34 @@ $ mvn spring-boot:run
 
 ```bash
 # development
-$ mvn test
+$ mvn test\
+```
+
+## Populate database
+
+Linux:
+```bash
+bash start-database.sh
+```
+
+Windows:
+
+```
+docker exec -it c8-pg bash
+
+# inside container bash terminal
+
+psql -U docker -d c8 < ./sql-init/init_database.sql
+
+psql -U docker -d c8 < ./sql-init/grupos_202304250951.sql
+
+psql -U docker -d c8 < ./sql-init/instituicoes_202304250951.sql
+
+psql -U docker -d c8 < ./sql-init/instituicao_grupo_202304250951.sql
+
+psql -U docker -d c8 < ./sql-init/servicos_202304250951.sql
+
+psql -U docker -d c8 < ./sql-init/scores_202304250951.sql
+
+psql -U docker -d c8 < ./sql-init/tarifas_202304250951.sql
 ```
