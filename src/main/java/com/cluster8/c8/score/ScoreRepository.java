@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ScoreRepository extends PagingAndSortingRepository<ScoreEntity, UUID> {
 
+  // @Query("select distinct s.instituicao.id, s from ScoreEntity as s")
   @Query("select s from ScoreEntity as s")
   List<ScoreEntity> findAllWithPageAndSort(PageRequest pageRequest);
 }

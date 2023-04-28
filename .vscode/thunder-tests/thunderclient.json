@@ -137,11 +137,11 @@
     "colId": "3fbb8804-d5b3-4590-a1a5-bca649327e94",
     "containerId": "",
     "name": "find all",
-    "url": "{{baseUrl}}/scores?page=1&order=desc&orderField=scorePf",
+    "url": "{{baseUrl}}/scores?page=2",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-04-18T12:33:40.964Z",
-    "modified": "2023-04-19T12:05:34.009Z",
+    "modified": "2023-04-19T12:32:39.127Z",
     "headers": [],
     "params": [
       {
@@ -152,17 +152,44 @@
       },
       {
         "name": "page",
-        "value": "1",
+        "value": "2",
         "isPath": false
       },
       {
         "name": "order",
         "value": "desc",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "orderField",
         "value": "scorePf",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "4a8a5133-50b7-4fd9-8283-cbea0cac7b72",
+    "colId": "964c67a7-d5e1-4470-9d8a-0a6b339669dc",
+    "containerId": "",
+    "name": "cmparador",
+    "url": "{{baseUrl}}/tarifas/comparador?instituicoesIds=ff9c701f-cf7c-4809-a0f0-e407f6eda49e, ff7c2676-a870-4398-a91e-4cdfa81056c4&servicosIds=fdf6f151-4e4a-4640-a918-9a8c672ae710",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-04-27T11:47:01.405Z",
+    "modified": "2023-04-27T12:28:53.409Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "instituicoesIds",
+        "value": "ff9c701f-cf7c-4809-a0f0-e407f6eda49e, ff7c2676-a870-4398-a91e-4cdfa81056c4",
+        "isPath": false
+      },
+      {
+        "name": "servicosIds",
+        "value": "fdf6f151-4e4a-4640-a918-9a8c672ae710",
         "isPath": false
       }
     ],
