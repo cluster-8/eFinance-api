@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.cluster8.c8.exceptions.NotFoundException;
 import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
 import com.cluster8.c8.tarifa.dto.FindTarifasTop5ByServico;
+import com.cluster8.c8.tarifa.dto.TarifasComparadorByServicoDto;
 
 @RestController
 public class TarifaController {
@@ -29,6 +30,22 @@ public class TarifaController {
       @RequestParam(required = false, defaultValue = "1") Integer page) {
     try {
       return this.service.findTarifasTop5ByServico(id, dataFim, order, limit, page);
+    } catch (NotFoundException e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+  }
+
+  @GetMapping("/tarifas/comparador")
+  public List<TarifasComparadorByServicoDto> tarifasComparadorByServico(
+      @RequestParam() List<UUID> instituicoesIds,
+      @RequestParam() List<UUID> servicosIds) {
+    try {
+      System.out.println("instituicoesIds: " + instituicoesIds);
+      System.out.println("servicosIds: " + servicosIds);
+
+      return this.service.tarifasComparadorByServico(instituicoesIds, servicosIds);
     } catch (NotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
     } catch (Exception e) {

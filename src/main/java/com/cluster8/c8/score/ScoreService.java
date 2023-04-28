@@ -16,10 +16,15 @@ public class ScoreService {
 
     @Cacheable(cacheNames = "ServicoService", key = "{ #root.method.name, #page, #limit, #order, #orderField }")
     public List<ScoreEntity> findAll(Integer page, Integer limit, String order, String orderField) {
+        Sort sort = Sort.by(
+                order.equals("asc") ? Sort.Order.asc(orderField) : Sort.Order.desc(orderField)
+        // , Sort.Order.desc("createdAt")
+        );
+
         PageRequest pageRequest = PageRequest.of(
                 page,
                 limit,
-                order.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, orderField);
+                sort);
 
         return repo.findAllWithPageAndSort(pageRequest);
     }

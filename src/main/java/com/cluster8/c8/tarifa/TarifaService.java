@@ -1,8 +1,11 @@
 package com.cluster8.c8.tarifa;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,7 +15,10 @@ import org.springframework.stereotype.Service;
 
 import com.cluster8.c8.exceptions.NotFoundException;
 import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
+import com.cluster8.c8.tarifa.dto.FindTarifasComparadorByServicoDto;
 import com.cluster8.c8.tarifa.dto.FindTarifasTop5ByServico;
+import com.cluster8.c8.tarifa.dto.TarifaComparadorInstituicoesAndTarifaDto;
+import com.cluster8.c8.tarifa.dto.TarifasComparadorByServicoDto;
 
 @Service
 public class TarifaService {
@@ -59,5 +65,63 @@ public class TarifaService {
         }
 
         return tarifas;
+    }
+
+    public List<TarifasComparadorByServicoDto> tarifasComparadorByServico(List<UUID> instituicoesIds,
+            List<UUID> servicosIds) throws Exception {
+        // PageRequest pageRequest = PageRequest.of(
+        // null,
+        // null,
+        // Sort.Direction.ASC, "valorMaximo");
+
+        List<FindTarifasComparadorByServicoDto> tarifas = new ArrayList();
+
+        instituicoesIds.forEach(instId -> {
+            servicosIds.forEach(servicoId -> {
+                FindTarifasComparadorByServicoDto tarifa = repo.findTarifasComparadorByServico(instId, servicoId);
+
+                tarifas.add(tarifa);
+            });
+        });
+
+        if (tarifas.isEmpty()) {
+            throw new NotFoundException("Tarifas não encontradas para serviço informado");
+        }
+
+        List<TarifasComparadorByServicoDto> result = new ArrayList<>();
+
+        tarifas.forEach(tarifa -> {
+            System.out.println("result: " + result);
+            System.out.println("tarifa.servicoId: " + tarifa.getServicoId());
+
+            TarifasComparadorByServicoDto servico = result.stream()
+                    .filter(v -> v.getServicoId().equals(tarifa.getServicoId())).findFirst().orElse(null);
+
+            System.out.println("servico: " + servico);
+
+            if (servico == null) {
+                TarifasComparadorByServicoDto servicoDto = new TarifasComparadorByServicoDto();
+
+                servicoDto.setServicoId(tarifa.getServicoId());
+
+                TarifaComparadorInstituicoesAndTarifaDto instituicao = new TarifaComparadorInstituicoesAndTarifaDto(
+                        tarifa.getInstituicaoId(), tarifa.getValorMaximo(), tarifa.getMoeda(), tarifa.getUnidade(),
+                        tarifa.getDataVigencia());
+
+                servicoDto.addInstituicao(instituicao);
+
+                result.add(servicoDto);
+
+            } else {
+                TarifaComparadorInstituicoesAndTarifaDto instituicao = new TarifaComparadorInstituicoesAndTarifaDto(
+                        tarifa.getInstituicaoId(), tarifa.getValorMaximo(), tarifa.getMoeda(), tarifa.getUnidade(),
+                        tarifa.getDataVigencia());
+
+                servico.addInstituicao(instituicao);
+            }
+
+        });
+
+        return result;
     }
 }
