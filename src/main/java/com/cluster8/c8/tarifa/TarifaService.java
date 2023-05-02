@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class TarifaService {
             Integer page)
             throws Exception {
 
-        List<FindTarifasTop5ByServico> tarifas;
+        Page<FindTarifasTop5ByServico> tarifas;
 
         PageRequest pageRequest = PageRequest.of(
                 page,
@@ -64,7 +65,11 @@ public class TarifaService {
             throw new NotFoundException("Tarifas não encontradas para serviço informado");
         }
 
-        return tarifas;
+        Long total = tarifas.getTotalElements();
+
+        System.out.println("total:" + total);
+
+        return tarifas.toList();
     }
 
     public List<TarifasComparadorByServicoDto> tarifasComparadorByServico(List<UUID> instituicoesIds,
