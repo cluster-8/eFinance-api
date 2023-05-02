@@ -69,18 +69,16 @@ public class TarifaService {
 
     public List<TarifasComparadorByServicoDto> tarifasComparadorByServico(List<UUID> instituicoesIds,
             List<UUID> servicosIds) throws Exception {
-        // PageRequest pageRequest = PageRequest.of(
-        // null,
-        // null,
-        // Sort.Direction.ASC, "valorMaximo");
-
-        List<FindTarifasComparadorByServicoDto> tarifas = new ArrayList();
+        List<FindTarifasComparadorByServicoDto> tarifas = new ArrayList<>();
 
         instituicoesIds.forEach(instId -> {
             servicosIds.forEach(servicoId -> {
-                FindTarifasComparadorByServicoDto tarifa = repo.findTarifasComparadorByServico(instId, servicoId);
+                Optional<FindTarifasComparadorByServicoDto> tarifa = repo.findTarifasComparadorByServico(instId,
+                        servicoId);
 
-                tarifas.add(tarifa);
+                if (tarifa.isPresent()) {
+                    tarifas.add(tarifa.get());
+                }
             });
         });
 
@@ -91,13 +89,8 @@ public class TarifaService {
         List<TarifasComparadorByServicoDto> result = new ArrayList<>();
 
         tarifas.forEach(tarifa -> {
-            System.out.println("result: " + result);
-            System.out.println("tarifa.servicoId: " + tarifa.getServicoId());
-
             TarifasComparadorByServicoDto servico = result.stream()
                     .filter(v -> v.getServicoId().equals(tarifa.getServicoId())).findFirst().orElse(null);
-
-            System.out.println("servico: " + servico);
 
             if (servico == null) {
                 TarifasComparadorByServicoDto servicoDto = new TarifasComparadorByServicoDto();
@@ -119,7 +112,6 @@ public class TarifaService {
 
                 servico.addInstituicao(instituicao);
             }
-
         });
 
         return result;

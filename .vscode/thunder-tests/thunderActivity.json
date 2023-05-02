@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "_id": "6ccae13e-da6b-462a-9a68-e0e3ba7616bd",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3002/tarifas/comparador?instituicoesIds=80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8&servicosIds=da4aedff-43ee-45b7-a785-bd06ae61cd09",
+    "url": "http://localhost:3002/tarifas/comparador?instituicoesIds=80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8&servicosIds=da4aedff-43ee-45b7-a785-bd06ae61cd09",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-05-02T12:41:40.132Z",
+    "modified": "2023-05-02T12:41:40.132Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "instituicoesIds",
+        "value": "80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8",
+        "isPath": false
+      },
+      {
+        "name": "servicosIds",
+        "value": "da4aedff-43ee-45b7-a785-bd06ae61cd09",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "5700c850-afec-4211-8aef-6a12dc5003e9",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/tarifas/comparador?instituicoesIds=80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8&servicosIds=da4aedff-43ee-45b7-a785-bd06ae61cd09",
+    "url": "http://localhost:3000/tarifas/comparador?instituicoesIds=80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8&servicosIds=da4aedff-43ee-45b7-a785-bd06ae61cd09",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-05-02T12:41:48.364Z",
+    "modified": "2023-05-02T12:41:48.364Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "instituicoesIds",
+        "value": "80a35fa9-472d-44b3-b884-a05e7691c006,%205f924b6a-d31b-4508-81ef-0a0098e537c8",
+        "isPath": false
+      },
+      {
+        "name": "servicosIds",
+        "value": "da4aedff-43ee-45b7-a785-bd06ae61cd09",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  }
+]
