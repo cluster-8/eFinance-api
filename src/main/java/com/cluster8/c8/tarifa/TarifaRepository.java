@@ -30,5 +30,5 @@ public interface TarifaRepository extends PagingAndSortingRepository<TarifaEntit
   Page<FindTarifasTop5ByServico> findTarifasTop5ByServico(UUID servicoId, Date dataFim, PageRequest pageRequest);
 
   @Query("select new com.cluster8.c8.tarifa.dto.FindTarifasComparadorByServicoDto(t.id, t.moeda, t.unidade, t.periodicidade, t.valorMaximo, t.dataVigencia, t.instituicao.id, t.servico.id) from TarifaEntity as t where t.instituicao.id = :instId and t.servico.id = :servId order by t.dataVigencia desc limit 1")
-  FindTarifasComparadorByServicoDto findTarifasComparadorByServico(UUID instId, UUID servId);
+  Optional<FindTarifasComparadorByServicoDto> findTarifasComparadorByServico(UUID instId, UUID servId);
 }
