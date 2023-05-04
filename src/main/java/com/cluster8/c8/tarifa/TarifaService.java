@@ -3,9 +3,7 @@ package com.cluster8.c8.tarifa;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,11 +19,17 @@ import com.cluster8.c8.tarifa.dto.FindTarifasTop5ByServico;
 import com.cluster8.c8.tarifa.dto.TarifaComparadorInstituicoesAndTarifaDto;
 import com.cluster8.c8.tarifa.dto.TarifasComparadorByServicoDto;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Service
 public class TarifaService {
 
     @Autowired
     private TarifaRepository repo;
+
+    @Autowired
+    private HttpServletResponse  response;
+
 
     @Cacheable(cacheNames = "TarifaService-tarifasFindAllByInstituicaoAndServicoTipo", key = "{ #id, #tipo }")
     public List<FindAllTarifasByInstituicaoDto> tarifasFindAllByInstituicaoAndServicoTipo(UUID id,
@@ -66,6 +70,10 @@ public class TarifaService {
         }
 
         Long total = tarifas.getTotalElements();
+
+        
+
+        this.response.addHeader("total", total.toString()); 
 
         System.out.println("total:" + total);
 
