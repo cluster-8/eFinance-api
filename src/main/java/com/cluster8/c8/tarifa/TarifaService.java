@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.cluster8.c8.exceptions.NotFoundException;
 import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
 import com.cluster8.c8.tarifa.dto.FindTarifasComparadorByServicoDto;
@@ -20,11 +18,17 @@ import com.cluster8.c8.tarifa.dto.FindTarifasTop5ByServico;
 import com.cluster8.c8.tarifa.dto.TarifaComparadorInstituicoesAndTarifaDto;
 import com.cluster8.c8.tarifa.dto.TarifasComparadorByServicoDto;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Service
 public class TarifaService {
 
     @Autowired
     private TarifaRepository repo;
+
+    @Autowired
+    private HttpServletResponse  response;
+
 
     @Cacheable(cacheNames = "TarifaService-tarifasFindAllByInstituicaoAndServicoTipo", key = "{ #id, #tipo }")
     public List<FindAllTarifasByInstituicaoDto> tarifasFindAllByInstituicaoAndServicoTipo(UUID id,
@@ -46,12 +50,11 @@ public class TarifaService {
         return tarifas;
     }
 
-    @Cacheable(cacheNames = "TarifaService-tarifasTop5ByServico", key = "{ #id, #dataFim, #order, #page, #limit }")
     public List<FindTarifasTop5ByServico> findTarifasTop5ByServico(UUID id, Date dataFim, String order, Integer limit,
             Integer page)
             throws Exception {
 
-        List<FindTarifasTop5ByServico> tarifas;
+        Page<FindTarifasTop5ByServico> tarifas;
 
         PageRequest pageRequest = PageRequest.of(
                 page,
@@ -64,7 +67,11 @@ public class TarifaService {
             throw new NotFoundException("Tarifas não encontradas para serviço informado");
         }
 
-        return tarifas;
+        Long total = tarifas.getTotalElements();
+
+        this.response.addHeader("total", total.toString()); 
+
+        return tarifas.toList();
     }
 
     public List<TarifasComparadorByServicoDto> tarifasComparadorByServico(List<UUID> instituicoesIds,
