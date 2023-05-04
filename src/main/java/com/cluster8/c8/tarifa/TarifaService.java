@@ -4,14 +4,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.cluster8.c8.exceptions.NotFoundException;
 import com.cluster8.c8.tarifa.dto.FindAllTarifasByInstituicaoDto;
 import com.cluster8.c8.tarifa.dto.FindTarifasComparadorByServicoDto;
@@ -51,7 +49,6 @@ public class TarifaService {
         return tarifas;
     }
 
-    @Cacheable(cacheNames = "TarifaService-tarifasTop5ByServico", key = "{ #id, #dataFim, #order, #page, #limit }")
     public List<FindTarifasTop5ByServico> findTarifasTop5ByServico(UUID id, Date dataFim, String order, Integer limit,
             Integer page)
             throws Exception {
@@ -71,11 +68,7 @@ public class TarifaService {
 
         Long total = tarifas.getTotalElements();
 
-        
-
         this.response.addHeader("total", total.toString()); 
-
-        System.out.println("total:" + total);
 
         return tarifas.toList();
     }
