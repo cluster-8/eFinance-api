@@ -89,9 +89,9 @@ public class TarifaService {
             });
         });
 
-        if (tarifas.isEmpty()) {
-            throw new NotFoundException("Tarifas não encontradas para serviço informado");
-        }
+        // if (tarifas.isEmpty()) {
+        //     throw new NotFoundException("Tarifas não encontradas para serviço informado");
+        // }
 
         List<TarifasComparadorByServicoDto> result = new ArrayList<>();
 
