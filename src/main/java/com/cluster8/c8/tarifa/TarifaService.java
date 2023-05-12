@@ -95,30 +95,24 @@ public class TarifaService {
 
         List<TarifasComparadorByServicoDto> result = new ArrayList<>();
 
+        servicosIds.forEach(servicoId -> {
+            TarifasComparadorByServicoDto servicoDto = new TarifasComparadorByServicoDto();
+
+            servicoDto.setServicoId(servicoId);
+
+            result.add(servicoDto);
+        });
+
         tarifas.forEach(tarifa -> {
             TarifasComparadorByServicoDto servico = result.stream()
                     .filter(v -> v.getServicoId().equals(tarifa.getServicoId())).findFirst().orElse(null);
 
-            if (servico == null) {
-                TarifasComparadorByServicoDto servicoDto = new TarifasComparadorByServicoDto();
 
-                servicoDto.setServicoId(tarifa.getServicoId());
+            TarifaComparadorInstituicoesAndTarifaDto instituicao = new TarifaComparadorInstituicoesAndTarifaDto(
+                    tarifa.getInstituicaoId(), tarifa.getValorMaximo(), tarifa.getMoeda(), tarifa.getUnidade(),
+                    tarifa.getDataVigencia());
 
-                TarifaComparadorInstituicoesAndTarifaDto instituicao = new TarifaComparadorInstituicoesAndTarifaDto(
-                        tarifa.getInstituicaoId(), tarifa.getValorMaximo(), tarifa.getMoeda(), tarifa.getUnidade(),
-                        tarifa.getDataVigencia());
-
-                servicoDto.addInstituicao(instituicao);
-
-                result.add(servicoDto);
-
-            } else {
-                TarifaComparadorInstituicoesAndTarifaDto instituicao = new TarifaComparadorInstituicoesAndTarifaDto(
-                        tarifa.getInstituicaoId(), tarifa.getValorMaximo(), tarifa.getMoeda(), tarifa.getUnidade(),
-                        tarifa.getDataVigencia());
-
-                servico.addInstituicao(instituicao);
-            }
+            servico.addInstituicao(instituicao);
         });
 
         return result;
