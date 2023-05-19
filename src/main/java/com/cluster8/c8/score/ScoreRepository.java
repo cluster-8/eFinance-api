@@ -3,6 +3,7 @@ package com.cluster8.c8.score;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -13,5 +14,5 @@ public interface ScoreRepository extends PagingAndSortingRepository<ScoreEntity,
 
   // @Query("select distinct s.instituicao.id, s from ScoreEntity as s")
   @Query("select s from ScoreEntity as s")
-  List<ScoreEntity> findAllWithPageAndSort(PageRequest pageRequest);
+  Page<ScoreEntity> findAllWithPageAndSort(PageRequest pageRequest);
 }
