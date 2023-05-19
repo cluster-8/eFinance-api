@@ -78,3 +78,7 @@ create table if not exists instituicao_grupo (
 	
 	unique ("instituicao_id", "grupo_id")
 );
+
+ALTER TABLE tarifas DROP CONSTRAINT tarifas_servico_id_instituicao_id_valor_maximo_data_vigenci_key;
+
+ALTER TABLE tarifas ADD CONSTRAINT tarifas_unique_key UNIQUE ("servico_id", "instituicao_id", "valor_maximo", "created_at", "periodicidade", "unidade");
