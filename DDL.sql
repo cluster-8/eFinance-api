@@ -82,3 +82,12 @@ create table if not exists instituicao_grupo (
 ALTER TABLE tarifas DROP CONSTRAINT tarifas_servico_id_instituicao_id_valor_maximo_data_vigenci_key;
 
 ALTER TABLE tarifas ADD CONSTRAINT tarifas_unique_key UNIQUE ("servico_id", "instituicao_id", "valor_maximo", "created_at", "periodicidade", "unidade");
+
+-- CRIANDO TABELA DE LOGS
+create table if not exists logs (
+	"id" uuid primary key default uuid_generate_v4 (),
+	"date" date not null,
+	"type" varchar(20),
+	"content" text,
+	"created_at" timestamp not null default current_timestamp
+);
