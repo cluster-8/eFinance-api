@@ -11,7 +11,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
         .exposedHeaders("*")
-        .allowedOrigins("http://localhost:8080", "http://localhost:3000")
+        .allowedOrigins("http://localhost:8080", "http://localhost:3000", "https://efinance.herokuapp.com")
         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
   }
 }
