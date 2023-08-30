@@ -11,7 +11,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
         .exposedHeaders("*")
-        .allowedOrigins("https://cosmic-syrniki-499c25.netlify.app")
+        .allowedOrigins("https://gcp-deploy--cosmic-syrniki-499c25.netlify.app")
         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
   }
 }
